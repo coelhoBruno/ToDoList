@@ -1,9 +1,18 @@
+const fs = require('fs');
+const ToDo = require('../models/todo');
+
 exports.get = (req, res, next) => {
     res.status(201).send('Requisição recebida com sucesso!');
 };
 
 exports.post = (req, res, next) => {
-    res.status(201).send('Requisição recebida com sucesso!');
+    let {name, inclusionDate, done} = req.body;
+
+    let todo = ToDo.of(name, inclusionDate, done);
+
+    fs.writeFileSync('todos.json', JSON.stringify(todo, null, 2));
+
+    res.status(201).send(todo);
 };
 
 exports.put = (req, res, next) => {
