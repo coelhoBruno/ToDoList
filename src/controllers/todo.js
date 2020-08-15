@@ -1,18 +1,30 @@
 const fs = require('fs');
 const ToDo = require('../models/todo');
+const TodoService = require('../services/TodoService');
+const ToDoCommand = require('../commands/ToDoCommand');
+
+const service = new TodoService();
 
 exports.get = (req, res, next) => {
-    res.status(201).send('Requisição recebida com sucesso!');
+    const response = service.getAll();
+    
+    res.status(201).send(response);
+};
+
+exports.getById = (req, res, next) => {
+    const response = service.getById(req.params.id);
+
+    res.status(201).send(response);
 };
 
 exports.post = (req, res, next) => {
     let {name, inclusionDate, done} = req.body;
 
-    let todo = ToDo.of(name, inclusionDate, done);
+    let todoCmd = ToDoCommand.of(name, inclusionDate, done);
 
-    fs.writeFileSync('todos.json', JSON.stringify(todo, null, 2));
+    const response = service.save(todoCmd);
 
-    res.status(201).send(todo);
+    res.status(201).send(response);
 };
 
 exports.put = (req, res, next) => {
@@ -21,6 +33,7 @@ exports.put = (req, res, next) => {
 };
 
 exports.delete = (req, res, next) => {
-    let id = req.params.id;
-    res.status(200).send(`Requisição recebida com sucesso! ${id}`);
+    const response = service.delete(req.params.id);
+
+    res.status(200).send(response);
 };

@@ -1,15 +1,16 @@
 const TodoId = require('./todoId');
+
 class ToDo {
 
-    constructor(id, nome, dataInclusao, concluida) {
+    constructor(id, name, inclusionDate, done) {
         this.id = id;
-        this.nome = nome;
-        this.dataInclusao = dataInclusao;
-        this.concluida = concluida;
+        this.name = name;
+        this.inclusionDate = inclusionDate;
+        this.done = done;
     }
 
-    static of(nome, dataInclusao, concluida) {
-        return new ToDo(TodoId.new(), nome, dataInclusao, concluida);
+    static of(name, inclusionDate, done) {
+        return new ToDo(TodoId.new(), name, inclusionDate, done);
     }
 }
 
