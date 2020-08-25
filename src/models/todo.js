@@ -9,8 +9,8 @@ class ToDo {
         this.done = done;
     }
 
-    static of(name, inclusionDate, done) {
-        return new ToDo(TodoId.new(), name, inclusionDate, done);
+    static of(name) {
+        return new ToDo(TodoId.new(), name, new Date().toLocaleDateString(), false);
     }
 }
 

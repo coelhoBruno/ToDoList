@@ -18,9 +18,7 @@ exports.getById = (req, res, next) => {
 };
 
 exports.post = (req, res, next) => {
-    let {name, inclusionDate, done} = req.body;
-
-    let todoCmd = ToDoCommand.of(name, inclusionDate, done);
+    let todoCmd = ToDoCommand.of(req.body);
 
     const response = service.save(todoCmd);
 
@@ -28,9 +26,7 @@ exports.post = (req, res, next) => {
 };
 
 exports.put = (req, res, next) => {
-    let {name, inclusionDate, done} = req.body;
-
-    let todoCmd = ToDoCommand.of(name, inclusionDate, done);
+    let todoCmd = ToDoCommand.of(req.body);
 
     const response = service.update(req.params.id, todoCmd);
 

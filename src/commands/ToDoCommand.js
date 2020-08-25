@@ -6,7 +6,7 @@ class ToDoCommand {
         this.done = done;
     }
 
-    static of(name, inclusionDate, done) {
+    static of({name, inclusionDate, done}) {
         return new ToDoCommand(name, inclusionDate, done);
     }
 
