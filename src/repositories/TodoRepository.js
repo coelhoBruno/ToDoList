@@ -19,10 +19,17 @@ class TodoRepository {
     
     save(todo) {
         db.get('todos')
-           .push({id: todo.id, name: todo.name, inclusionDate: todo.inclusionDate, done: todo.done})
-           .write();
+            .push({id: todo.id, name: todo.name, inclusionDate: todo.inclusionDate, done: todo.done})
+            .write();
         
         return todo;
+    }
+
+    update(id, todo) {
+        return db.get('todos')
+                .find({id: {id: id}})
+                .assign(todo)
+                .write()
     }
 
     delete(id) {
@@ -30,7 +37,7 @@ class TodoRepository {
             .remove({id: {id: id}})
             .write();
     }
-    
+
 }
 
 module.exports = TodoRepository;

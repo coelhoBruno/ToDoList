@@ -8,13 +8,13 @@ const service = new TodoService();
 exports.get = (req, res, next) => {
     const response = service.getAll();
     
-    res.status(201).send(response);
+    res.status(200).send(response);
 };
 
 exports.getById = (req, res, next) => {
     const response = service.getById(req.params.id);
 
-    res.status(201).send(response);
+    res.status(200).send(response);
 };
 
 exports.post = (req, res, next) => {
@@ -28,8 +28,13 @@ exports.post = (req, res, next) => {
 };
 
 exports.put = (req, res, next) => {
-    let id = req.params.id;
-    res.status(201).send(`Requisição recebida com sucesso! ${id}`);
+    let {name, inclusionDate, done} = req.body;
+
+    let todoCmd = ToDoCommand.of(name, inclusionDate, done);
+
+    const response = service.update(req.params.id, todoCmd);
+
+    res.status(200).send(response);
 };
 
 exports.delete = (req, res, next) => {

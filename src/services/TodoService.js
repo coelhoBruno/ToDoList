@@ -19,6 +19,10 @@ class TodoService {
         return repository.save(todo);
     }
 
+    update(id, TodoCmd) {
+        return repository.update(id, TodoCmd);
+    }
+
     delete(id) {
         return repository.delete(id);
     }
