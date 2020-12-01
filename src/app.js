@@ -7,10 +7,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 //Rotas
-const index = require('./routes/index');
 const personRoute = require('./routes/todoRoute');
 
-app.use('/', index);
-app.use('/todo', personRoute);
+app.use('/', personRoute);
 
 module.exports = app;
